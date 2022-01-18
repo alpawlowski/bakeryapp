@@ -1,0 +1,74 @@
+<%- include('../header'); %>
+<%- include('../nav'); %>
+
+<div class="container col-xxl-8 px-4 py-4 h-100 mb-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5 h-100 mb-5">
+        <div class="col-10 col-sm-8 col-lg-4 mx-auto">
+            <img src="/images/wesual-click-rsWZ-P9FbQ4-unsplash.jpg" class="d-block mx-auto img-fluid w-100" loading="lazy">
+          </div>
+          <div class="col-lg-8">
+            <% if(customer){ %>
+            <h1 class="h3 fw-normal">
+                Witaj, <%= customer.firstname %> <%= customer.lastname %>
+                <small>(<%= customer.email %>)</small>
+            </h1>
+            <p class="lead">Poniżej znajdują się wszystkie twoje zamówienia:</p> 
+            <% }; %>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <% results.forEach(function(order){ %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne<%= order.id %>">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne<%= order.id %>" aria-expanded="false" aria-controls="flush-collapseOne<%= order.id %>">
+                                <span class="me-4">Zamówienie nr: <%= order.id %> - <%= order.product %> </span>
+                                <% if (order.status === "zrealizowane") { %>
+                                    <span class="badge bg-success rounded-pill">Status: <%= order.status %></span>
+                                <% } else if (order.status === "w trakcie zrealizacji") { %>
+                                    <span class="badge bg-primary rounded-pill">Status: <%= order.status %></span>
+                                <% } else if (order.status === "anulowane") { %>
+                                    <span class="badge bg-danger rounded-pill">Status: <%= order.status %></span>
+                                <% } else { %>
+                                    <span class="badge bg-secondary rounded-pill">Status: <%= order.status %></span>
+                                <% } %>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne<%= order.id %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne<%= order.id %>" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <table class="table table-borderless">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Zamówione produkty:</th>
+                                        <th scope="col">Data złożenia</th>
+                                        <th scope="col">Data odbioru</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="text-muted">
+                                      <tr>
+                                        <td>
+                                            <ul>
+                                                <li><%= order.product %></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="d-block"><%= order.date_placing_order.getDate()%>-<%= order.date_placing_order.getMonth()+1%>-<%= order.date_placing_order.getFullYear()%></span>
+                                            <span class="d-block"><%= order.time_placing_order.getHours()%>:<%= order.time_placing_order.getMinutes()%></span>
+                                        </td>
+                                        <td>
+                                            <span class="d-block"><%= order.date_receipt_order.getDate()%>-<%= order.date_receipt_order.getMonth()+1%>-<%= order.date_receipt_order.getFullYear()%></span>
+                                            <span class="d-block"><%= order.time_receipt_order.substr(0, 5)%></span>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>                  
+                <% }); %>
+            </div>
+
+
+            
+          </div>
+      </div>
+    </div>
+    <br>
+<%- include('../footer'); %>

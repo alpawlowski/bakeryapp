@@ -1,0 +1,78 @@
+<%- include('../header'); %>
+<%- include('../nav'); %>
+
+<div class="container col-lg-9 col-12 px-lg-4 py-4">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-12 col-sm-12 col-lg-8 mx-auto">
+
+        <h1 class="h3 fw-normal text-center">Składanie zamówienia</h1>
+        <p class="fw-light col-lg-10 text-center mx-auto">
+          <small>W celu złożenia zamówienia, należy wypełnić poniższy formularz danymi osoby zamawiającej.</small>
+        </p>
+          <main class="p-4p-lg-5 pt-4">
+              <% if (typeof error != 'undefined') { %>
+                  <% if (error) { %>
+                      <p class="lead fw-normal text-danger"><%= error %></p>
+                  <% } %>
+              <% } %>
+              
+            <form class="row g-3" method="post" action="zamowienie">
+              <div class="col-md-6">
+                <label for="firstname" class="form"><small>Imię</small></label>
+                <input type="text" class="form-control mt-1" name="firstname" placeholder="imię" required>
+              </div>
+              <div class="col-md-6">
+                <label for="lastname" class="form"><small>Nazwisko</small></label>
+                <input type="text" class="form-control mt-1" name="lastname" placeholder="nazwisko" required>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form"><small>Telefon</small></label>
+                <input type="tel" class="form-control mt-1" name="phone" placeholder="numer telefonu" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form"><small>Email</small></label>
+                <input type="email" class="form-control mt-1" name="email" placeholder="email@mail.com" required>
+              </div>
+              <div class="col-md-6">
+                <label for="date" class="form"><small>Data odbioru</small></label>
+                <input type="date" class="form-control mt-1" name="date_receipt_order" placeholder="data odbioru" required>
+              </div>
+              <div class="col-md-6">
+                <label for="time" class="form"><small>Czas odbioru</small></label>
+                <input type="time" class="form-control mt-1" name="time_receipt_order" placeholder="czas odbioru" required>
+              </div>
+              <div class="col-md-12">
+                <label for="city" class="form"><small>Miasto</small></label>
+                <input type="text" class="form-control mt-1" name="city" placeholder="miasto" required>
+              </div>
+              <div class="col-md-8">
+                <label for="street" class="form"><small>Ulica</small></label>
+                <input type="text" class="form-control mt-1" name="street" placeholder="ulica" required>
+              </div>
+              <div class="col-md-4">
+                <label for="number" class="form"><small>Nr domu / lokalu</small></label>
+                <input type="text" class="form-control mt-1" name="apartment_number" placeholder="nr domu / lokalu" required>
+              </div>
+              <div class="col-12">
+                <label for="product" class="form"><small>Produkt</small></label>
+                <select name="product" class="form-select" required>
+                  <option selected>wybierz produkt...</option>
+                  <% products.forEach(function(product){ %>
+                    <option value="<%= product.name %>"><%= product.name %></option>
+                  <% }); %>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="comments" class="form"><small>Uwagi dotyczące zamówienia</small></label>
+                <textarea class="form-control mt-1" name="comments" placeholder="Tutaj wpisz swoje uwagi..."></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" role="button" class="btn btn-piekarnia col-12 my-4 py-2">Złóż zamówienie</button>
+              </div>
+            </form>
+        </main>
+    </div>
+  </div>
+</div>
+
+<%- include('../footer'); %>

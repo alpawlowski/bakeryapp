@@ -1,0 +1,37 @@
+<%- include('../header'); %>
+<%- include('../nav'); %>
+
+<div class="container col-xxl-8 px-4 py-4 h-100">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5 h-100">
+        <div class="col-10 col-sm-8 col-lg-6 mx-auto">
+            <img src="/images/wesual-click-rsWZ-P9FbQ4-unsplash.jpg" class="d-block mx-auto img-fluid w-100" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            
+            <form method="post" action="/sprawdz-status-zamowienia" class="py-5 my-5">
+                <% if (typeof error != 'undefined') { %>
+                    <% if (error) { %>
+                        <p class="lead fw-normal text-danger"><%= error %></p>
+                    <% } %>
+                <% } %>
+                <h1 class="h3 my-4 fw-normal">
+                    Sprawdź status swojego zamówienia
+                    <small class="h6">Wpisz imię oraz email osoby zamawiającej</small>
+                </h1>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Imię">
+                    <label for="floatingInput">Imię</label>
+                </div>
+                <div class="form-floating mt-2">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    <label for="floatingPassword">Email</label>
+                </div>
+                
+                <button class="w-100 btn btn-lg btn-piekarnia my-4" type="submit">Sprawdź status</button>
+            </form>
+            
+          </div>
+      </div>
+    </div>
+
+<%- include('../footer'); %>

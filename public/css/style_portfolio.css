@@ -1,0 +1,73 @@
+*{
+    font-size: 1.1rem;
+}
+
+/* body {
+    background-color: #F2F3F5;
+} */
+
+.navbar-brand {
+    font-size: 1.7rem;
+    font-weight: bolder;
+}
+
+.bg-image-full {
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+}
+
+.gradient {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    background: url("/images/img/wesual-click-rsWZ-P9FbQ4-unsplash.jpg") center center no-repeat;
+    background-size: cover;
+}
+.gradient:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom right, #002f4b, #002f4b);
+    opacity: 0.25;
+}
+
+.gradient:after {
+    content: "Dzięki wyborowi tylko stałych, sprawdzonych dostawców oferujących jedynie surowce najwyższej dostępnej jakości. Nasze wyroby od lat odznaczają się doskonałymi walorami smakowymi oraz co bardzo istotne, są zawsze powtarzalne.";
+    color: white;
+    position: absolute;
+    text-align: center;
+    padding: 0 10%;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item {
+    margin-left: 1rem!important;
+}
+
+.nav-link {
+    color: rgb(247, 229, 195)!important;
+}
+
+.nav-link.active {
+    color: rgb(236, 190, 104)!important;
+}
+
+.polecane {
+    border-radius: 50px;
+    background-color: #A8A891;
+    color: wheat;
+}

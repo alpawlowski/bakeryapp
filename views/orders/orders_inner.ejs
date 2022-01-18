@@ -1,0 +1,139 @@
+<%- include('../header'); %>
+
+    <div class="d-flex  w-100" id="wrapper">
+      <div class="border-end bg-white" id="sidebar-wrapper">
+          <a href="/" class="text-dark text-decoration-none">
+            <div class="sidebar-heading border-bottom bg-light fw-bold">BakeryApp</div>
+          </a>
+          <%- include('../menu'); %>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+          <!-- Top navigation-->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+              <div class="container-fluid">
+                  <button class="btn btn-piekarnia me-auto" id="sidebarToggle">Rozwijane Menu</button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                          <li class="nav-item"> Zalogowany jako: <%= user.username %></li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+          <!-- Page content-->
+
+          <div class="container-fluid">
+
+              <div class="my-3 p-3 bg-body rounded shadow-sm">
+                  <p class="lead fw-bold border-bottom pb-2 mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#A8A891" class="pb-2 bi bi-bag-fill" viewBox="0 0 16 16">
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                    </svg>
+                    Szczegoły zamówienia
+                  </p>
+                  <% orders.forEach(function(order){ %>
+                    <div class="col-12 d-flex flex-column flex-md-row flex-lg-row justify-content-between pt-4 pb-0 px-3">
+                        <div class="fs-5 text-danger mb-0">
+                            Termin zamówienia:
+                            <span class="fw-bold"><%= order.date_receipt_order.getDate()%>-<%= order.date_receipt_order.getMonth()+1%>-<%= order.date_receipt_order.getFullYear()%></span>
+                            <span class="fw-bold"><%= order.time_receipt_order.substr(0, 5)%></span>
+                        </div>
+                        <div class="d-flex flex-row justify-content-end">
+                            Status zamówienia: 
+                            <% if (order.status === "zrealizowane") { %>
+                                <span class="text-success fw-bold ms-2"><%= order.status %> </span>
+                            <% } else if (order.status === "w trakcie zrealizacji") { %>
+                                <span class="text-primary fw-bold ms-2"><%= order.status %> </span>
+                            <% } else if (order.status === "anulowane") { %>
+                                <span class="text-danger fw-bold ms-2"><%= order.status %> </span>
+                            <% } else { %>
+                                <span class="fw-bold ms-2"><%= order.status %> </span>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="d-flex text-muted py-2 px-3">
+                        <div class="col-12 col-md-7 col-lg-7">
+                            <h1 class="h1 fw-bolder">Zamówienie nr: <%= order.id %></h1>
+                            <div class="small mb-4">Zamówienie złożone dnia: <%= order.date_placing_order.getDate()%>-<%= order.date_placing_order.getMonth()+1%>-<%= order.date_placing_order.getFullYear()%></div>
+
+                            <p class="lead fw-normal">Zamawiane produkty:</p>
+                            <ul>
+                                <li>
+                                    <p class="lead"><%= order.product %></p>
+                                </li>
+                            </ul>
+                            <hr>
+                            <p class="lead fw-normal">Dane zamawiającego:</p>
+                            <ul>
+                                <li class="list-unstyled">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Imię: </b><%= order.firstname %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Nazwisko: </b><%= order.lastname %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Telefon: </b><%= order.phone %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Email: </b><%= order.email %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Miasto: </b><%= order.city %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Ulica: </b><%= order.street %></p>
+                                </li>
+                                <li class="list-unstyled ">
+                                    <p class="lead fw-normal my-2"><b class="me-1">Nr domu/lokalu: </b><%= order.apartment_number %></p>
+                                </li>
+                            </ul>
+                            <hr>
+                            <p class="lead fw-normal">Uwagi dotyczące zamówienia:</p>
+                            <ul class="mb-4">
+                                <li class="list-unstyled">
+                                    <p class="lead my-2"><b>Uwagi: </b><%= order.comments %></p>
+                                </li>
+                            </ul>
+                            <hr>
+                            <p class="lead fw-normal mt-3">Zmień status zamówienia:</p>
+                            <div class="d-flex gap-3 flex-column flex-lg-row flex-md-row">
+                                <% if (order.status != "w trakcie zrealizacji") { %>
+                                    <form action="/zamowienia/zamowienie_<%= order.id %>/w-trakcie-realizacji" method="post">
+                                        <button type="submit" class="btn btn-outline-primary flex-shrink-0" type="button">
+                                            W trakcie realizacji
+                                        </button>
+                                    </form>
+                                <% } %>
+                                
+                                <% if (order.status != "zrealizowane") { %>
+                                    <form action="/zamowienia/zamowienie_<%= order.id %>/zrealizowane" method="post">
+                                        <button type="submit" class="btn btn-outline-success flex-shrink-0" type="button">
+                                            Zrealizowane zamówienie
+                                        </button>
+                                    </form>
+                                <% } %>
+                                <% if (user.position === "Kierownik") { %>
+                                    <% if (order.status !== "anulowane") { %>
+                                        <form action="/zamowienia/zamowienie_<%= order.id %>/anulowane" method="post">
+                                            <button type="submit" class="btn btn-outline-danger flex-shrink-0" type="button">
+                                                Anuluj zamówienie
+                                            </button>
+                                        </form>
+                                    <% } %> 
+                                <% } %> 
+                            </div>
+                            
+                        </div>
+                        
+
+                    
+                    </div>
+
+                <% }); %>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+<%- include('../footer'); %>

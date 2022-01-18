@@ -1,0 +1,13 @@
+<div class="list-group list-group-flush">
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Strona główna</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3 <%- url.includes('/dashboard') ? 'active' : '' %>" href="/dashboard">Dashboard</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3 <%- url.includes('/zamowienia') ? 'active' : '' %>" href="/zamowienia">Zamówienia</a>
+    <a class="list-group-item list-group-item-action list-group-item-light p-3 <%- url.includes('/produkty') ? 'active' : '' %>" href="/produkty">Produkty</a>
+    <% if (user.position === "Kierownik") { %>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3 <%- url.includes('/rejestracja') ? 'active' : '' %>" href="/admin/rejestracja">Dodaj nowego użytkownika</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3 <%- url.includes('/monitoring') ? 'active' : '' %>" href="/admin/monitoring">Monitoring</a>
+    <% } %> 
+    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/wyloguj">Wyloguj</a>
+</div>
+
+  

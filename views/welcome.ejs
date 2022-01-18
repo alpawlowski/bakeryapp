@@ -1,0 +1,32 @@
+<%- include('header'); %>
+
+<%- include('nav'); %>
+<div class="container col-xxl-8 px-4 py-4 h-100">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5 h-100">
+    <div class="col-10 col-sm-8 col-lg-6 mx-auto">
+        <img src="/images/wesual-click-rsWZ-P9FbQ4-unsplash.jpg" class="d-block mx-auto img-fluid w-100" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <!-- <p class="lead">System do wspomagania zarządzania firmą produkcyjno-handlową.</p> -->
+        
+        <% if (user) { %>
+          <h1 class="display-5 fw-normal mb-4">Witaj, <%= user.username %>!</h1>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
+            <a class="btn btn-piekarnia btn-lg px-4 me-md-2" href="/dashboard" role="button">Dashboard</a>
+            <a class="btn btn-piekarnia my-auto px-4" href="/wyloguj" role="button">Wyloguj</a>
+          </div>
+        <% } else if (!user) { %>
+          <h1 class="display-5 fw-bold mb-4">Witaj w BakeryApp!</h1>
+          <div class="d-grid gap-2 d-md-flex">
+            <!-- <a href="/logowanie" type="button" class="btn btn-piekarnia btn-lg px-4 me-md-2">Złóż zamówienie</a> -->
+            <a href="/logowanie" type="button" class="btn btn-piekarnia my-auto px-4">Logowanie do systemu</a>
+            <a href="/sprawdz-status-zamowienia" type="button" class="btn btn-piekarnia my-auto px-4">Sprawdź status zamówienia</a>
+          </div>
+        <% } %>
+        
+      </div>
+    </div>
+  </div>
+
+<%- include('footer'); %>

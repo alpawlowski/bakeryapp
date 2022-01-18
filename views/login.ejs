@@ -1,0 +1,26 @@
+<%- include('header'); %>
+
+<main class="form-login h-100">
+    <a href="/" class="btn btn-outline-piekarnia back_to_home">Powrót do strony głównej</a>
+    <form method="post" action="/logowanie" class="py-5 my-5">
+        <% if (typeof error != 'undefined') { %>
+            <% if (error) { %>
+                <p class="lead fw-normal text-danger"><%= error %></p>
+            <% } %>
+        <% } %>
+        <h1 class="h3 my-4 fw-normal">Logowanie do systemu</h1>
+        
+        <div class="form-floating">
+            <input type="text" class="form-control" name="login" id="login" placeholder="Login">
+            <label for="floatingInput">Login</label>
+        </div>
+        <div class="form-floating mt-2">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Hasło">
+            <label for="floatingPassword">Hasło</label>
+        </div>
+        
+        <button class="w-100 btn btn-lg btn-piekarnia my-4" type="submit">Zaloguj się</button>
+    </form>
+</main>
+
+<%- include('footer'); %>

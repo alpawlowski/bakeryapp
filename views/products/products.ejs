@@ -1,0 +1,82 @@
+<%- include('../header'); %>
+
+    <div class="d-flex  w-100" id="wrapper">
+      <div class="border-end bg-white" id="sidebar-wrapper">
+          <a href="/" class="text-dark text-decoration-none">
+            <div class="sidebar-heading border-bottom bg-light fw-bold">BakeryApp</div>
+          </a>
+          <%- include('../menu'); %>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+          <!-- Top navigation-->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+              <div class="container-fluid">
+                  <button class="btn btn-piekarnia me-auto" id="sidebarToggle">Rozwijane Menu</button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                          <li class="nav-item"> Zalogowany jako: <%= user.username %></li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+          <!-- Page content-->
+
+          <div class="container-fluid">
+ 
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <div class="d-flex gap-3 d-md-flex border-bottom">
+                    <p class="lead fw-bold pb-2 mb-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#A8A891" class="pb-2 bi bi-bag-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        Produkty
+                    </p>
+                </div>
+                <div class="d-flex gap-3 align-items-end justify-content-end w-100 my-3 pb-3 border-bottom">
+                    <a href="/produkty/dodaj" type="button" class="btn btn-sm btn-outline-piekarnia my-auto px-4">Dodaj nowy produkt do bazy</a>
+                </div>
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Dostępność</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Ilość</th>
+                        <th scope="col">Data ważności</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+            <% products.forEach(function(product, i){ %>
+
+                  <tr>
+                    <th scope="row"><%= product.id %></th>
+                    <td><%= product.name %></td>
+                    <td>
+                        <% if (product.availability == true) { %>
+                            <span class="text-success">dostępny </span>
+                        <% } else if (product.availability == false) { %>
+                            <span class="text-danger">niedostępny </span>
+                        <% } %>
+                    </td>
+                    <td><%= product.price %></td>
+                    <td><%= product.count %></td>
+                    <td>
+                        <%= new Date(product.expiration_date).getDate() %>-<%= new Date(product.expiration_date).getMonth()+1 %>-<%= new Date(product.expiration_date).getFullYear() %>
+                        (<%= parseInt((new Date(product.expiration_date).getTime() - now)/1000/3600/24)+1  %> dni i
+                        <%= parseInt((new Date(product.expiration_date).getTime() - now)/1000/3600 % 24)  %> godzin)
+                    </td>
+                  </tr>
+
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+  </div>
+
+
+<%- include('../footer'); %>

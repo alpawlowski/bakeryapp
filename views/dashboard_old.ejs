@@ -1,0 +1,24 @@
+<%- include('header'); %>
+
+<% if (user) { %>
+    <h2><small>Zalogowany użytkownik:</small><span class="fw-bold"> <%= user.username %></span></h2>
+
+    <% if (user.position == 'Pracownik') { %>
+        <p class="lead">Pracownik</p>
+        <p>Nie masz dostępu</p>
+    <% } else if (user.position == 'Kierownik') { %>
+        <p class="lead">Kierownik</p>
+        <p>Masz dostęp</p>
+    <% } %>
+
+    <a class="btn btn-piekarnia" href="/wyloguj" role="button">Wyloguj</a>
+
+<% } %>
+
+
+
+
+
+    
+
+<%- include('footer'); %>

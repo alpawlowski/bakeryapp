@@ -1,0 +1,22 @@
+{
+  "name": "bakeryapp",
+  "version": "2.0.0",
+  "description": "piekarnia",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "piekarnia",
+    "zespol8"
+  ],
+  "author": "zespol8",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1"
+  }
+}

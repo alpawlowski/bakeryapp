@@ -1,0 +1,51 @@
+<%- include('header'); %>
+
+    <div class="d-flex  w-100" id="wrapper">
+      <div class="border-end bg-white" id="sidebar-wrapper">
+          <a href="/" class="text-dark text-decoration-none">
+            <div class="sidebar-heading border-bottom bg-light fw-bold">BakeryApp</div>
+          </a>
+          <%- include('menu'); %>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+          <!-- Top navigation-->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+              <div class="container-fluid">
+                  <button class="btn btn-piekarnia me-auto" id="sidebarToggle">Rozwijane Menu</button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                          <li class="nav-item"> Zalogowany jako: <%= user.username %></li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+          <!-- Page content-->
+
+          <div class="container-fluid">
+
+              
+              
+              <div class="my-3 p-3 bg-body rounded shadow-sm">
+                  <p class="lead fw-bold border-bottom pb-2 mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#A8A891" class="mb-1 bi bi-camera-video-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+                    </svg>  
+                    Monitoring
+                    </p>
+                  
+                <div class="d-flex text-muted py-4 px-3">
+                    <video width="100%" height="auto" autoplay loop>
+                        <source src="/images/video/700_F_439756482_yGw2AT53QyGjsSnPeSlWmLUS2wEjMyAB_ST.mp4" type="video/mp4">
+                        <source src="./images/video/700_F_439756482_yGw2AT53QyGjsSnPeSlWmLUS2wEjMyAB_ST.ogg" type="video/ogg">
+                    </video>
+                </div>
+                <small class="text-muted px-3" style="font-size: 10px;">https://stock.adobe.com/pl/video/cctv-surveillance-camera-monitoring-highway-roads-in-hong-kong-city/439756482?prev_url=detail</small>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+<%- include('footer'); %>
